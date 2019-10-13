@@ -49,7 +49,7 @@ android {
          *
          * We accomplish this with the help of a funky little Groovy script that maintains that
          * correspondence automatically.
-         *
+         * x
          * "http://developer.android.com/tools/building/configuring-gradle.html"
          * "http://developer.android.com/tools/publishing/versioning.html"
          */
