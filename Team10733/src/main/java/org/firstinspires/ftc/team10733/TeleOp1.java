@@ -78,7 +78,8 @@ public class TeleOp1 extends OpMode
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Tell the driver that initialization is complete.
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Status is", "Initialized");
+
     }
 
     /*
