@@ -69,6 +69,8 @@ public class TeleOp1 extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
+        //COUGARS: define your other motors (or sensors) here.
+        //You can see how the motors for the front wheels are defined.
         leftFrontDrive  = hardwareMap.get(DcMotor.class, "frontLeft");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "frontRight");
 
@@ -78,7 +80,7 @@ public class TeleOp1 extends OpMode
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Tell the driver that initialization is complete.
-        telemetry.addData("Status is", "Initialized1");
+        telemetry.addData("Status is", "Initialized");
 
     }
 
@@ -116,16 +118,29 @@ public class TeleOp1 extends OpMode
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
-        // Tank Mode uses one stick to control each wheel.
-        // - This requires no math, but it is hard to drive forward slowly and keep straight.
-        // leftPower  = -gamepad1.left_stick_y ;
-        // rightPower = -gamepad1.right_stick_y ;
+        /*
+         Tank Mode uses one stick to control each wheel.
+         - This requires no math, but it is hard to drive forward slowly and keep straight.
+         leftPower  = -gamepad1.left_stick_y ;
+         rightPower = -gamepad1.right_stick_y ;
+         COUGARS: You can use the joystick and call other methods (functions)
+         to calculate how to power your 4 mechanum wheels.  You can even try using
+         the HOMAR library that St. Paul Academy demonstrated last year.  You will need to include
+         the HOMAR library in this project and then add it to the import statements at the top of
+         this class.  Twyla added this to last year's Rover Ruckus code.
+         Also Eagan created a web tool for FTC teams to use to create the basic
+         autonomous drive code as a starting point.
+         Send calculated power to wheels
+        */
 
-        // Send calculated power to wheels
         leftFrontDrive.setPower(leftPower);
         rightFrontDrive.setPower(rightPower);
 
-        // Show the elapsed game time and wheel power.
+        /*
+         Show the elapsed game time and wheel power.
+         COUGARS: You can use telemetry to display data to the phone screen.  That's really helpful
+         to see the motor power and other useful things.
+        */
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
     }
