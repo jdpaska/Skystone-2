@@ -58,6 +58,8 @@ public class TeleOp1 extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
     private DcMotor rightFrontDrive = null;
+    private DcMotor leftBackDrive = null;
+    private DcMotor rightBackDrive = null;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -73,6 +75,8 @@ public class TeleOp1 extends OpMode
         //You can see how the motors for the front wheels are defined.
         leftFrontDrive  = hardwareMap.get(DcMotor.class, "frontLeft");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "frontRight");
+        leftBackDrive = hardwareMap.get(DcMotor.class, "backLeft");
+        rightBackDrive = hardwareMap.get(DcMotor.class, "backRight");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -115,6 +119,7 @@ public class TeleOp1 extends OpMode
         // - This uses basic math to combine motions and is easier to drive straight.
         double drive = -gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
+
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
@@ -132,9 +137,14 @@ public class TeleOp1 extends OpMode
          autonomous drive code as a starting point.
          Send calculated power to wheels
         */
-
+        telemetry.addData("left Front Power", leftPower);
+        telemetry.addData("right Front Power", rightPower);
+        telemetry.addData("left Back Power", leftPower);
+        telemetry.addData("right Back Power", rightPower);
         leftFrontDrive.setPower(leftPower);
         rightFrontDrive.setPower(rightPower);
+        leftBackDrive.setPower(leftPower);
+        rightBackDrive.setPower(rightPower);
 
         /*
          Show the elapsed game time and wheel power.
