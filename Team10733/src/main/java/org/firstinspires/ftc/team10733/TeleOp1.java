@@ -81,7 +81,9 @@ public class TeleOp1 extends OpMode
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status is", "Initialized");
@@ -109,8 +111,13 @@ public class TeleOp1 extends OpMode
     @Override
     public void loop() {
         // Setup a variable for each drive wheel to save power level for telemetry
+        double leftFrontPower;
+        double rightFrontPower;
+        double leftBackPower;
+        double rightBackPower;
         double leftPower;
         double rightPower;
+
 
         // Choose to drive using either Tank Mode, or POV Mode
         // Comment out the method that's not used.  The default below is POV.
@@ -120,8 +127,15 @@ public class TeleOp1 extends OpMode
         double drive = -gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
 
-        leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
+        leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+        //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
+        //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+        leftFrontPower   = leftPower * -.3;
+        rightFrontPower   = rightPower * .3;
+        leftBackPower   = leftPower * -.3;
+        rightBackPower   = rightPower * .3;
+
 
         /*
          Tank Mode uses one stick to control each wheel.
@@ -137,14 +151,14 @@ public class TeleOp1 extends OpMode
          autonomous drive code as a starting point.
          Send calculated power to wheels
         */
-        telemetry.addData("left Front Power", leftPower);
-        telemetry.addData("right Front Power", rightPower);
-        telemetry.addData("left Back Power", leftPower);
-        telemetry.addData("right Back Power", rightPower);
-        leftFrontDrive.setPower(leftPower);
-        rightFrontDrive.setPower(rightPower);
-        leftBackDrive.setPower(leftPower);
-        rightBackDrive.setPower(rightPower);
+        telemetry.addData("left Front Power", leftFrontPower);
+        telemetry.addData("right Front Power", rightFrontPower);
+        telemetry.addData("left Back Power", leftBackPower);
+        telemetry.addData("right Back Power", rightBackPower);
+        leftFrontDrive.setPower(leftFrontPower);
+        rightFrontDrive.setPower(rightFrontPower);
+        leftBackDrive.setPower(leftBackPower);
+        rightBackDrive.setPower(rightBackPower);
 
         /*
          Show the elapsed game time and wheel power.
