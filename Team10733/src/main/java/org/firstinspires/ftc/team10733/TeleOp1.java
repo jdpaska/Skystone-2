@@ -124,20 +124,20 @@ public class TeleOp1 extends OpMode
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
-        double drive = -gamepad1.left_stick_y;
+        double drive = gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
         double strafe = -gamepad1.left_stick_x;
 
         leftFrontPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
         rightFrontPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
-        leftBackPower   = Range.clip(drive + turn - strafe, -1.0, 1.0) ;
-        rightBackPower   = Range.clip(drive - turn + strafe, -1.0, 1.0) ;
+        leftBackPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
+        rightBackPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
         //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-        //leftFrontPower   = leftPower * -.3;
-        //rightFrontPower   = rightPower * .3;
-        //leftBackPower   = leftPower * -.3;
-        //rightBackPower   = rightPower * .3;
+        leftFrontPower   = leftFrontPower * .3;
+        rightFrontPower   = rightFrontPower * -.3;
+        leftBackPower   = leftBackPower * -.3;
+        rightBackPower   = rightBackPower * .3;
 
 
         /*
