@@ -83,6 +83,7 @@ public class ArmTester extends LinearOpMode {
 
         // Scan servo till stop pressed.
         while(opModeIsActive()){
+            //armPower = .1;
 
             armPower = gamepad2.left_stick_y;
             armMotor.setPower(armPower);
@@ -90,12 +91,12 @@ public class ArmTester extends LinearOpMode {
             servoDirection = -gamepad2.right_stick_y;
             if (servoDirection > 0) {
 
-                if (leftServoPosition >= LEFT_MAX_POS) {
+                if (leftServoPosition < LEFT_MAX_POS) {
                     leftServoPosition += INCREMENT;
                 }
             }
             else if (servoDirection < 0){
-                if (leftServoPosition <= LEFT_MIN_POS ) {
+                if (leftServoPosition > LEFT_MIN_POS ) {
                     leftServoPosition -= INCREMENT ;
                 }
             }
