@@ -64,8 +64,11 @@ public class ArmTester extends LinearOpMode {
     private Servo   leftServo;
     private Servo   rightServo;
     private DcMotor armMotor = null;
-    double  leftServoPosition = (LEFT_MAX_POS - LEFT_MIN_POS) / 2; // Start at halfway position
-    double  rightServoPosition = (RIGHT_MAX_POS - RIGHT_MIN_POS) / 2; // Start at halfway position
+    //double  leftServoPosition = (LEFT_MAX_POS - LEFT_MIN_POS) / 2; // Start at halfway position
+    //double  rightServoPosition = (RIGHT_MAX_POS - RIGHT_MIN_POS) / 2; // Start at halfway position
+    double  leftServoPosition = LEFT_MIN_POS; // Start at halfway position
+    double  rightServoPosition = RIGHT_MAX_POS; // Start at halfway position
+
     boolean rampUp = true;
     double armPower = 0;
     double servoDirection = 0;
@@ -79,6 +82,8 @@ public class ArmTester extends LinearOpMode {
         leftServo = hardwareMap.get(Servo.class, "left_hand");
         rightServo = hardwareMap.get(Servo.class, "right_hand");
         armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
+
+
 
         // Wait for the start button
         telemetry.addData(">", "Press Start." );
