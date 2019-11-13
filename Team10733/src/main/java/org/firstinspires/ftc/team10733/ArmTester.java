@@ -57,11 +57,15 @@ public class ArmTester extends LinearOpMode {
     static final int    CYCLE_MS    =   50;     // period of each cycle
     static final double LEFT_MAX_POS     =  1.0;     // Maximum rotational position
     static final double LEFT_MIN_POS     =  0.0;     // Minimum rotational position
+    static final double RIGHT_MAX_POS     =  1.0;     // Maximum rotational position
+    static final double RIGHT_MIN_POS     =  0.0;     // Minimum rotational position
 
     // Define class members
     private Servo   leftServo;
+    private Servo   rightServo;
     private DcMotor armMotor = null;
     double  leftServoPosition = (LEFT_MAX_POS - LEFT_MIN_POS) / 2; // Start at halfway position
+    double  rightServoPosition = (RIGHT_MAX_POS - RIGHT_MIN_POS) / 2; // Start at halfway position
     boolean rampUp = true;
     double armPower = 0;
     double servoDirection = 0;
@@ -73,6 +77,7 @@ public class ArmTester extends LinearOpMode {
         // Connect to servo (Assume PushBot Left Hand)
         // Change the text in quotes to match any servo name on your robot.
         leftServo = hardwareMap.get(Servo.class, "left_hand");
+        rightServo = hardwareMap.get(Servo.class, "right_hand");
         armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
 
         // Wait for the start button
@@ -91,13 +96,15 @@ public class ArmTester extends LinearOpMode {
             servoDirection = -gamepad2.right_stick_y;
             if (servoDirection > 0) {
 
-                if (leftServoPosition < LEFT_MAX_POS) {
+                if ((leftServoPosition < LEFT_MAX_POS) && (rightServoPosition > RIGHT_MIN_POS)) {
                     leftServoPosition += INCREMENT;
+                    rightServoPosition -= INCREMENT;
                 }
             }
             else if (servoDirection < 0){
-                if (leftServoPosition > LEFT_MIN_POS ) {
+                if ((leftServoPosition > LEFT_MIN_POS ) && (rightServoPosition < RIGHT_MAX_POS)) {
                     leftServoPosition -= INCREMENT ;
+                    rightServoPosition += INCREMENT ;
                 }
             }
 
@@ -121,13 +128,15 @@ public class ArmTester extends LinearOpMode {
             }
 */
             // Display the current value
-            telemetry.addData("Servo Position", "%5.2f", leftServoPosition);
+            telemetry.addData("Left Servo Position", "%5.2f", leftServoPosition);
+            telemetry.addData("Right Servo Position", "%5.2f", rightServoPosition);
             telemetry.addData( "Arm Motor Power:" ,"%5.2f",armPower);
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
 
             // Set the servo to the new position and pause;
             leftServo.setPosition(leftServoPosition);
+            rightServo.setPosition(rightServoPosition);
             sleep(CYCLE_MS);
             idle();
         }
