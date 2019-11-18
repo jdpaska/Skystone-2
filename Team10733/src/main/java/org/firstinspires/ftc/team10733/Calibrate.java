@@ -15,9 +15,11 @@ public class Calibrate extends LinearOpMode {
     //Calculate encoder conversion
     Integer cpr = 28; //counts per rotation
     Integer gearratio = 20;
+
+
     Double diameter = 3.8;
     Double cpi = (cpr * gearratio) / (Math.PI * diameter); //counts per inch -> counts per rotation / circumference
-    Double bias = 1.0;//adjust until your robot goes 20 inches
+    Double bias = 1.2;//adjust until your robot goes 20 inches
     //
     Double conversion = cpi * bias;
     //

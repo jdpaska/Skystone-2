@@ -134,10 +134,10 @@ public class TeleOp1 extends OpMode
         rightBackPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
         //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-        leftFrontPower   = leftFrontPower * .3;
-        rightFrontPower   = rightFrontPower * -.3;
-        leftBackPower   = leftBackPower * -.3;
-        rightBackPower   = rightBackPower * .3;
+        leftFrontPower   = leftFrontPower * .4;
+        rightFrontPower   = rightFrontPower * -.4;
+        leftBackPower   = leftBackPower * -.4;
+        rightBackPower   = rightBackPower * .4;
 
 
         /*
