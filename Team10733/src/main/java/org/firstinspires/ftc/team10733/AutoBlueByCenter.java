@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.team10733;
 
-        import com.qualcomm.hardware.bosch.BNO055IMU;
-        import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-        import com.qualcomm.robotcore.hardware.DcMotor;
-        import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-        import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
-        import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-        import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-        import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-        import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Line by Center!", group="chad")
+@Autonomous(name="To the Line by Center a", group="chad")
 public class AutoBlueByCenter extends LinearOpMode {
         //
         DcMotor frontleft;
@@ -40,17 +40,21 @@ public void runOpMode(){
         //
         initGyro();
         //
-        frontleft = hardwareMap.dcMotor.get("frontleft");
-        frontright = hardwareMap.dcMotor.get("frontright");
-        backleft = hardwareMap.dcMotor.get("backleft");
-        backright = hardwareMap.dcMotor.get("backright");
+        frontleft = hardwareMap.dcMotor.get("frontLeft");
+        frontright = hardwareMap.dcMotor.get("frontRight");
+        backleft = hardwareMap.dcMotor.get("backLeft");
+        backright = hardwareMap.dcMotor.get("backRight");
 
-        frontright.setDirection(DcMotorSimple.Direction.REVERSE);
-        backright.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontright.setDirection(DcMotorSimple.Direction.FORWARD);
+        backright.setDirection(DcMotorSimple.Direction.FORWARD);
         //
         waitForStartify();
         //
-
+    telemetry.addData("positioning straight", 21);
+        moveToPosition(21, 0.2);
+        //
+        //strafeToPosition(-21.0, 0.2);
+        //
         }
 //
     /*
@@ -298,5 +302,3 @@ public void turnWithEncoder(double input){
         }
         //
         }
-        {
-}
