@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Line by Center a", group="chad")
+@Autonomous(name="To the Line by Center", group="chad")
 public class AutoBlueByCenter extends LinearOpMode {
         //
         DcMotor frontleft;
@@ -45,15 +45,14 @@ public void runOpMode(){
         backleft = hardwareMap.dcMotor.get("backLeft");
         backright = hardwareMap.dcMotor.get("backRight");
 
-        frontright.setDirection(DcMotorSimple.Direction.FORWARD);
-        backright.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
+        backright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
         //
         waitForStartify();
         //
-    telemetry.addData("positioning straight", 21);
         moveToPosition(21, 0.2);
         //
-        //strafeToPosition(-21.0, 0.2);
+        strafeToPosition(-21.0, 0.2);
         //
         }
 //
@@ -93,7 +92,6 @@ public void moveToPosition(double inches, double speed){
         frontleft.setPower(0);
         backright.setPower(0);
         backleft.setPower(0);
-        return;
         }
 //
     /*
@@ -236,7 +234,6 @@ public void strafeToPosition(double inches, double speed){
         frontleft.setPower(0);
         backright.setPower(0);
         backleft.setPower(0);
-        return;
         }
 //
     /*

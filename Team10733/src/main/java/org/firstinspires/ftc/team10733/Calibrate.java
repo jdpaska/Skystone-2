@@ -47,8 +47,8 @@ public class Calibrate extends LinearOpMode {
         if (inches < 5) {
             int move = (int) (Math.round(inches * conversion));
             //
-            frontleft.setTargetPosition(frontleft.getCurrentPosition() - move);
-            frontright.setTargetPosition(frontright.getCurrentPosition() - move);
+            frontleft.setTargetPosition(frontleft.getCurrentPosition() + move);
+            frontright.setTargetPosition(frontright.getCurrentPosition() + move);
             backleft.setTargetPosition(backleft.getCurrentPosition() + move);
             backright.setTargetPosition(backright.getCurrentPosition() + move);
             //
@@ -110,7 +110,6 @@ public class Calibrate extends LinearOpMode {
             backleft.setPower(0);
             backright.setPower(0);
         }
-        return;
     }
     /*
     A tradition within the Thunder Pengwins code, we always start programs with waitForStartify,
