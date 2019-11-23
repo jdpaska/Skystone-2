@@ -15,22 +15,20 @@ public class Calibrate extends LinearOpMode {
     //Calculate encoder conversion
     Integer cpr = 28; //counts per rotation
     Integer gearratio = 20;
-
-
-    Double diameter = 3.8;
+    Double diameter = 4.125;
     Double cpi = (cpr * gearratio) / (Math.PI * diameter); //counts per inch -> counts per rotation / circumference
-    Double bias = 1.2;//adjust until your robot goes 20 inches
+    Double bias = 1.0;//adjust until your robot goes 20 inches
     //
     Double conversion = cpi * bias;
     //
     public void runOpMode() {
         //
-        frontleft = hardwareMap.dcMotor.get("frontLeft");
-        frontright = hardwareMap.dcMotor.get("frontRight");
-        backleft = hardwareMap.dcMotor.get("backLeft");
-        backright = hardwareMap.dcMotor.get("backRight");
-        frontright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
-        backright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
+        frontleft = hardwareMap.dcMotor.get("frontleft");
+        frontright = hardwareMap.dcMotor.get("frontright");
+        backleft = hardwareMap.dcMotor.get("backleft");
+        backright = hardwareMap.dcMotor.get("backright");
+        frontleft.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
+        backleft.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
         //
         waitForStartify();
         //
@@ -75,8 +73,8 @@ public class Calibrate extends LinearOpMode {
             int movebl2 = backleft.getCurrentPosition() + (int) (Math.round(inches * conversion));
             int movebr2 = backright.getCurrentPosition() + (int) (Math.round(inches * conversion));
             //
-            frontleft.setTargetPosition(frontleft.getCurrentPosition() - move1);
-            frontright.setTargetPosition(frontright.getCurrentPosition() - move1);
+            frontleft.setTargetPosition(frontleft.getCurrentPosition() + move1);
+            frontright.setTargetPosition(frontright.getCurrentPosition() + move1);
             backleft.setTargetPosition(backleft.getCurrentPosition() + move1);
             backright.setTargetPosition(backright.getCurrentPosition() + move1);
             //
@@ -110,6 +108,7 @@ public class Calibrate extends LinearOpMode {
             backleft.setPower(0);
             backright.setPower(0);
         }
+        return;
     }
     /*
     A tradition within the Thunder Pengwins code, we always start programs with waitForStartify,

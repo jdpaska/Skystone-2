@@ -96,7 +96,7 @@ public class ArmTester extends LinearOpMode {
             //armPower = .1;
 
             armPower = gamepad2.left_stick_y;
-            armPower = armPower * 1.0;
+            armPower = armPower * 0.2;
             armMotor.setPower(armPower);
 
             servoDirection = -gamepad2.right_stick_y;

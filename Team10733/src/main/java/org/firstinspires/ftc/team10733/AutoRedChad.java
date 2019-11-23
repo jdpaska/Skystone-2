@@ -26,7 +26,7 @@ public class AutoRedChad extends LinearOpMode {
         Integer gearratio = 40;
         Double diameter = 4.125;
         Double cpi = (cpr * gearratio)/(Math.PI * diameter); //counts per inch, 28cpr * gear ratio / (2 * pi * diameter (in inches, in the center))
-        Double bias = 1.2;//default 0.8
+        Double bias = 1.0;//default 0.8
         Double meccyBias = 0.9;//change to adjust only strafing movement
         //
         Double conversion = cpi * bias;

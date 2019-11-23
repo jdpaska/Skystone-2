@@ -13,8 +13,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Blue and opp Line!", group="chad")
-public class AutoBlueChad extends LinearOpMode {
+@Autonomous(name="LZ 1", group="chad")
+public class LZ1 extends LinearOpMode {
         //
         DcMotor frontleft;
         DcMotor frontright;
@@ -23,7 +23,7 @@ public class AutoBlueChad extends LinearOpMode {
         //28 * 20 / (2ppi * 4.125)
         Double width = 16.0; //inches
         Integer cpr = 28; //counts per rotation
-        Integer gearratio = 40;
+        Integer gearratio = 20;
         Double diameter = 4.125;
         Double cpi = (cpr * gearratio)/(Math.PI * diameter); //counts per inch, 28cpr * gear ratio / (2 * pi * diameter (in inches, in the center))
         Double bias = 1.0;//default 0.8
@@ -40,17 +40,19 @@ public void runOpMode(){
         //
         initGyro();
         //
-        frontleft = hardwareMap.dcMotor.get("frontLeft");
-        frontright = hardwareMap.dcMotor.get("frontRight");
-        backleft = hardwareMap.dcMotor.get("backLeft");
-        backright = hardwareMap.dcMotor.get("backRight");
+        frontleft = hardwareMap.dcMotor.get("frontleft");
+        frontright = hardwareMap.dcMotor.get("frontright");
+        backleft = hardwareMap.dcMotor.get("backleft");
+        backright = hardwareMap.dcMotor.get("backright");
 
-        frontright.setDirection(DcMotorSimple.Direction.REVERSE);
-        backright.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontleft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backleft.setDirection(DcMotorSimple.Direction.REVERSE);
         //
         waitForStartify();
         //
-        strafeToPosition(20.0, 0.2);
+        moveToPosition(26.4, 0.2);
+        //
+        strafeToPosition(23.0, 0.2);
         //
         }
 //

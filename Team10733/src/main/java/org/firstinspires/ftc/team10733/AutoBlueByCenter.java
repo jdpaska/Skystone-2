@@ -45,9 +45,9 @@ public void runOpMode(){
         backleft = hardwareMap.dcMotor.get("backLeft");
         backright = hardwareMap.dcMotor.get("backRight");
 
-        frontright.setDirection(DcMotorSimple.Direction.FORWARD);//If your robot goes backward, switch this from right to left CORRECT
-        backright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
-    backleft.setDirection(DcMotorSimple.Direction.FORWARD);//If your robot goes backward, switch this from right to left
+       // frontright.setDirection(DcMotorSimple.Direction.FORWARD);//If your robot goes backward, switch this from right to left CORRECT
+       // backright.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
+    backleft.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
     frontleft.setDirection(DcMotorSimple.Direction.REVERSE);//If your robot goes backward, switch this from right to left
 
     //
