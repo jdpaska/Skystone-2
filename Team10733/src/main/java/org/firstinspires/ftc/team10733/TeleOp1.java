@@ -154,10 +154,7 @@ public class TeleOp1 extends OpMode
          autonomous drive code as a starting point.
          Send calculated power to wheels
         */
-        telemetry.addData("left Front Power", leftFrontPower);
-        telemetry.addData("right Front Power", rightFrontPower);
-        telemetry.addData("left Back Power", leftBackPower);
-        telemetry.addData("right Back Power", rightBackPower);
+
         leftFrontDrive.setPower(leftFrontPower);
         rightFrontDrive.setPower(rightFrontPower);
         leftBackDrive.setPower(leftBackPower);
