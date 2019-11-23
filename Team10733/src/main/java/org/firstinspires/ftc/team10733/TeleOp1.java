@@ -73,17 +73,17 @@ public class TeleOp1 extends OpMode
         // step (using the FTC Robot Controller app on the phone).
         //COUGARS: define your other motors (or sensors) here.
         //You can see how the motors for the front wheels are defined.
-        leftFrontDrive  = hardwareMap.get(DcMotor.class, "frontLeft");
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "frontRight");
-        leftBackDrive = hardwareMap.get(DcMotor.class, "backLeft");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "backRight");
+        leftFrontDrive  = hardwareMap.get(DcMotor.class, "frontleft");
+        rightFrontDrive = hardwareMap.get(DcMotor.class, "frontright");
+        leftBackDrive = hardwareMap.get(DcMotor.class, "backleft");
+        rightBackDrive = hardwareMap.get(DcMotor.class, "backright");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
-        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        //rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        //rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status is", "Initialized");
@@ -124,19 +124,19 @@ public class TeleOp1 extends OpMode
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
-        double drive = gamepad1.left_stick_y;
+        double drive = -gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
-        double strafe = -gamepad1.left_stick_x;
+        double strafe = gamepad1.left_stick_x;
 
-        leftFrontPower   = Range.clip(drive - turn + strafe, -1.0, 1.0) ;
-        rightFrontPower   = Range.clip(drive + turn - strafe, -1.0, 1.0) ;
-        leftBackPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
-        rightBackPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
+        leftFrontPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
+        rightFrontPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
+        leftBackPower   = Range.clip(drive + turn - strafe, -1.0, 1.0) ;
+        rightBackPower   = Range.clip(drive - turn + strafe, -1.0, 1.0) ;
         //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
         leftFrontPower   = leftFrontPower * .4;
-        rightFrontPower   = rightFrontPower * -.4;
-        leftBackPower   = leftBackPower * -.4;
+        rightFrontPower   = rightFrontPower * .4;
+        leftBackPower   = leftBackPower * .4;
         rightBackPower   = rightBackPower * .4;
 
 

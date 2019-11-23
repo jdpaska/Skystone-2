@@ -40,10 +40,10 @@ public void runOpMode(){
         //
         initGyro();
         //
-        frontleft = hardwareMap.dcMotor.get("frontLeft");
-        frontright = hardwareMap.dcMotor.get("frontRight");
-        backleft = hardwareMap.dcMotor.get("backLeft");
-        backright = hardwareMap.dcMotor.get("backRight");
+        frontleft = hardwareMap.dcMotor.get("frontleft");
+        frontright = hardwareMap.dcMotor.get("frontright");
+        backleft = hardwareMap.dcMotor.get("backleft");
+        backright = hardwareMap.dcMotor.get("backright");
 
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
