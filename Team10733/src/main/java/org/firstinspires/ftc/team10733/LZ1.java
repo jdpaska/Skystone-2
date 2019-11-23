@@ -34,7 +34,7 @@ public class LZ1 extends LinearOpMode {
         //
         BNO055IMU imu;
         Orientation angles;
-        Acceleration gravity;
+        Acceleration gravity; 
 //
 public void runOpMode(){
         //
