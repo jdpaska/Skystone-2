@@ -50,7 +50,7 @@ public void runOpMode(){
         //
         waitForStartify();
         //
-        strafeToPosition(20.0, 0.2);
+        strafeToPosition(18.0, 0.2);
         //
         }
 //

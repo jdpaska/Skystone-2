@@ -55,7 +55,7 @@ public void runOpMode(){
         //
         moveToPosition(21, 0.2);
         //
-        strafeToPosition(-21.0, 0.2);
+        strafeToPosition(-189/7.0, 0.2);
         //
         }
 //
