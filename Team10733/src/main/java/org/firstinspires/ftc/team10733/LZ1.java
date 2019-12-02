@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="LZ 1", group="chad")
+@Autonomous(name="AutoRedByCenter", group="chad")
 public class LZ1 extends LinearOpMode {
         //
         DcMotor frontleft;
