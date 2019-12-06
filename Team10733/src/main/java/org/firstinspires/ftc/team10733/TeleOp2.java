@@ -85,6 +85,9 @@ public class TeleOp2 extends OpMode
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         //rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
+        arm = new ArmController();
+
+
         // Tell the driver that initialization is complete.
         telemetry.addData("Status is", "Initialized");
 
@@ -127,6 +130,8 @@ public class TeleOp2 extends OpMode
         double drive = -gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
         double strafe = gamepad1.left_stick_x;
+        double armPower = gamepad2.left_stick_y;
+
 
         leftFrontPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
         rightFrontPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
@@ -138,6 +143,19 @@ public class TeleOp2 extends OpMode
         rightFrontPower   = rightFrontPower * .4;
         leftBackPower   = leftBackPower * .4;
         rightBackPower   = rightBackPower * .4;
+
+        arm.extend(armPower);
+
+        telemetry.addData("leftServo: ", arm.leftServoPosition );
+        telemetry.addData("rightServo: ", arm.rightServoPosition);
+        telemetry.addData("arm power: ", armPower );
+
+        telemetry.update();
+
+        //read gamepad
+        //open and close
+        // gamepad2.
+        // arm.grab();
 
 
         /*
