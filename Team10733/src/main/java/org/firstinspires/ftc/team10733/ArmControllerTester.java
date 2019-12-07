@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.team10733;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -49,25 +48,24 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name = "Arm Test", group = "Test")
+@TeleOp(name = "Arm Control Test", group = "Test")
+public class ArmControllerTester extends LinearOpMode {
 
-public class ArmTester extends LinearOpMode {
-
-    static final double INCREMENT   = 0.01;     // amount to slew servo each CYCLE_MS cycle
+    //static final double INCREMENT   = 0.01;     // amount to slew servo each CYCLE_MS cycle
     static final int    CYCLE_MS    =   50;     // period of each cycle
-    static final double LEFT_MAX_POS     =  1.0;     // Maximum rotational position
-    static final double LEFT_MIN_POS     =  0.0;     // Minimum rotational position
-    static final double RIGHT_MAX_POS     =  1.0;     // Maximum rotational position
-    static final double RIGHT_MIN_POS     =  0.0;     // Minimum rotational position
+    //static final double LEFT_MAX_POS     =  1.0;     // Maximum rotational position
+    //static final double LEFT_MIN_POS     =  0.0;     // Minimum rotational position
+    //static final double RIGHT_MAX_POS     =  1.0;     // Maximum rotational position
+    //static final double RIGHT_MIN_POS     =  0.0;     // Minimum rotational position
 
     // Define class members
-    private Servo   leftServo;
-    private Servo   rightServo;
-    private DcMotor armMotor = null;
+   // private Servo   leftServo;
+    //private Servo   rightServo;
+    //private DcMotor armMotor = null;
     //double  leftServoPosition = (LEFT_MAX_POS - LEFT_MIN_POS) / 2; // Start at halfway position
     //double  rightServoPosition = (RIGHT_MAX_POS - RIGHT_MIN_POS) / 2; // Start at halfway position
-    double  leftServoPosition = LEFT_MIN_POS; // Start at halfway position
-    double  rightServoPosition = RIGHT_MAX_POS; // Start at halfway position
+    //double  leftServoPosition = LEFT_MIN_POS; // Start at halfway position
+    //double  rightServoPosition = RIGHT_MAX_POS; // Start at halfway position
 
     boolean rampUp = true;
     double armPower = 0;
@@ -79,73 +77,42 @@ public class ArmTester extends LinearOpMode {
 
         // Connect to servo (Assume PushBot Left Hand)
         // Change the text in quotes to match any servo name on your robot.
-        leftServo = hardwareMap.get(Servo.class, "left_hand");
-        rightServo = hardwareMap.get(Servo.class, "right_hand");
-        armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
-
-
+       // leftServo = hardwareMap.get(Servo.class, "left_hand");
+        //rightServo = hardwareMap.get(Servo.class, "right_hand");
+        //armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
+         ArmController arm = new ArmController(hardwareMap);
 
         // Wait for the start button
         telemetry.addData(">", "Press Start." );
         telemetry.update();
         waitForStart();
 
-
         // Scan servo till stop pressed.
         while(opModeIsActive()){
-            //armPower = .1;
+            double armPower = gamepad2.left_stick_y;
+            arm.extend(armPower);
 
-            armPower = gamepad2.left_stick_y;
-            armPower = armPower * 0.5;
-            armMotor.setPower(armPower);
-
-            servoDirection = -gamepad2.right_stick_y;
-            if (servoDirection > 0) {
-
-                if ((leftServoPosition < LEFT_MAX_POS) && (rightServoPosition > RIGHT_MIN_POS)) {
-                    leftServoPosition += INCREMENT;
-                    rightServoPosition -= INCREMENT;
-                }
+            if (gamepad2.dpad_down){
+                arm.grab();
             }
-            else if (servoDirection < 0){
-                if ((leftServoPosition > LEFT_MIN_POS ) && (rightServoPosition < RIGHT_MAX_POS)) {
-                    leftServoPosition -= INCREMENT ;
-                    rightServoPosition += INCREMENT ;
-                }
+            if (gamepad2.dpad_up){
+                arm.release();
+            }
+            if (gamepad2.x){
+                arm.servosToHome();
             }
 
-/*
-            // slew the servo, according to the rampUp (direction) variable.
-            if (rampUp) {
-                // Keep stepping up until we hit the max value.
-                position += INCREMENT ;
-                if (position >= MAX_POS ) {
-                    position = MAX_POS;
-                    rampUp = !rampUp;   // Switch ramp direction
-                }
-            }
-            else {
-                // Keep stepping down until we hit the min value.
-                position -= INCREMENT ;
-                if (position <= MIN_POS ) {
-                    position = MIN_POS;
-                    rampUp = !rampUp;  // Switch ramp direction
-                }
-            }
-*/
             // Display the current value
-            telemetry.addData("Left Servo Position", "%5.2f", leftServoPosition);
-            telemetry.addData("Right Servo Position", "%5.2f", rightServoPosition);
+            telemetry.addData("Left Servo Position", "%5.2f", arm.leftServoPosition);
+            telemetry.addData("Right Servo Position", "%5.2f", arm.rightServoPosition);
             telemetry.addData( "Arm Motor Power:" ,"%5.2f",armPower);
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
 
-            // Set the servo to the new position and pause;
-            leftServo.setPosition(leftServoPosition);
-            rightServo.setPosition(rightServoPosition);
-            sleep(CYCLE_MS);
-            idle();
+            //sleep(CYCLE_MS);
+            //idle();
         }
+
 
         // Signal done;
         telemetry.addData(">", "Done");

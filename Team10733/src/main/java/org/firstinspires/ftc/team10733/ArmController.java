@@ -3,6 +3,9 @@ package org.firstinspires.ftc.team10733;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import static java.lang.Thread.sleep;
 
 public class ArmController {
 
@@ -10,26 +13,39 @@ public class ArmController {
     private Servo leftServo;
     private Servo  rightServo;
     private DcMotor armMotor = null;
+    //private HardwareMap hardwareMap = null;
 
     //set min and max servo positions
-    static final double LEFT_MAX_POS     =  1.0;     // Maximum rotational position
-    static final double LEFT_MIN_POS     =  0.0;     // Minimum rotational position
-    static final double RIGHT_MAX_POS     =  1.0;     // Maximum rotational position
-    static final double RIGHT_MIN_POS     =  0.0;     // Minimum rotational position
+    double LEFT_MAX_POS     =  1.0;     // Maximum rotational position
+    double LEFT_MIN_POS     =  0.0;     // Minimum rotational position
+    double RIGHT_MAX_POS     =  1.0;     // Maximum rotational position
+    double RIGHT_MIN_POS     =  0.0;     // Minimum rotational position
+    double LEFT_OPEN_POS     =  0.8;     // Maximum rotational position
+    double LEFT_CLOSED_POS     =  0.67;     // Minimum rotational position
+    double RIGHT_OPEN_POS     =  0.2;     // Maximum rotational position
+    double RIGHT_CLOSED_POS     =  0.33;     // Minimum rotational position
+    double LEFT_HOME_POS     =  0.24;
+    double RIGHT_HOME_POS     =  0.91;
 
-    leftServo = hardwareMap.get(Servo.class, "left_hand");
-    rightServo = hardwareMap.get(Servo.class, "right_hand");
-    armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
 
     double  leftServoPosition = .5; // left servo start position
     double  rightServoPosition = .5; // right servo start position
-    static final double INCREMENT   = 0.01;
+    double INCREMENT   = 0.01;
 
     double  armPowerBias = .2;//slow the arm motor
     //COUGARS: need to have a way to limit how far the arm will extend or contract.
 
+    public ArmController (HardwareMap hardwareMap){
+
+        leftServo = hardwareMap.get(Servo.class, "left_hand");
+        rightServo = hardwareMap.get(Servo.class, "right_hand");
+        armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
+
+    }
+
   public void extend(double power) {
     //extend the arm
+
 
       double armPower;
       armPower = power * armPowerBias;
@@ -39,16 +55,14 @@ public class ArmController {
 
       //reset the motors encoder
       armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+      armMotor.setTargetPosition(100); //set the position
 
+      armMotor.setDirection(DcMotor.Direction.REVERSE);
       //set motor to run to a position and stop
       armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-      //set the position
-      armMotor.setTargetPosition(400);//
+
       //motor will only move with power
       armMotor.setPower(armPower);
-
-
-
 
 //set motor power to zero
       armMotor.setPower(0);
@@ -56,26 +70,60 @@ public class ArmController {
 }
 
     public void retract(){
-    //retract the arm
+    //retract the arm to home position
 //COUGARS: basically do the reverse of extend.  Run to a position that fully retracts the arm.
 
+
     }
+
+
     public void grab(){
     //grab the block by moving the two servos inward
-        while ((leftServoPosition < LEFT_MAX_POS) && (rightServoPosition > RIGHT_MIN_POS)) {
-            leftServoPosition += INCREMENT;
-            rightServoPosition -= INCREMENT;
-        }
+
+        leftServoPosition = LEFT_CLOSED_POS;
+        leftServo.setPosition(leftServoPosition);
+        rightServoPosition = RIGHT_CLOSED_POS;
+        rightServo.setPosition(rightServoPosition);
+
+        //while ((leftServoPosition < LEFT_MAX_POS) && (rightServoPosition > RIGHT_MIN_POS)) {
+         //   leftServoPosition = LEFT_CLOSED_POS;
+         //   leftServo.setPosition(leftServoPosition);
+           // rightServoPosition = RIGHT_CLOSED_POS;
+           // rightServo.setPosition(rightServoPosition);
+       // }
 
 
 
     }
-    public void release(){
-    //release the block by moving the two servos outward
+    public void release() {
+        //release the block by moving the two servos outward
+        leftServoPosition = LEFT_OPEN_POS;
+        leftServo.setPosition(leftServoPosition);
+        rightServoPosition = RIGHT_OPEN_POS;
+        rightServo.setPosition(rightServoPosition);
+        /*
         while ((leftServoPosition > LEFT_MIN_POS) && (rightServoPosition < RIGHT_MAX_POS)) {
-            leftServoPosition -= INCREMENT;
-            rightServoPosition += INCREMENT;
+            leftServoPosition = LEFT_OPEN_POS;
+            leftServo.setPosition(leftServoPosition);
+            rightServoPosition = RIGHT_OPEN_POS;
+            rightServo.setPosition(rightServoPosition);
+
         }
+         */
+    }
+
+        public void servosToHome(){
+
+            rightServoPosition = RIGHT_HOME_POS;
+            rightServo.setPosition(rightServoPosition);
+            //need to wait for right server to finish so the two grabbers don't hit each other
+            // add that code here
+
+            leftServoPosition = LEFT_HOME_POS;
+            leftServo.setPosition(leftServoPosition);
+
+        }
+
 
 
 
@@ -89,4 +137,4 @@ public class ArmController {
 
 
 
-}
+

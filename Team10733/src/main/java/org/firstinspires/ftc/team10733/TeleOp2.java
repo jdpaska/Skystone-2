@@ -85,7 +85,7 @@ public class TeleOp2 extends OpMode
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         //rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
-        arm = new ArmController();
+       // arm = new ArmController();
 
 
         // Tell the driver that initialization is complete.
@@ -118,8 +118,8 @@ public class TeleOp2 extends OpMode
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double leftPower;
-        double rightPower;
+        //double leftPower;
+        //double rightPower;
 
 
         // Choose to drive using either Tank Mode, or POV Mode
@@ -145,10 +145,19 @@ public class TeleOp2 extends OpMode
         rightBackPower   = rightBackPower * .4;
 
         arm.extend(armPower);
+        if (gamepad2.dpad_down){
+            arm.grab();
+        }
+        if (gamepad2.dpad_up){
+            arm.release();
+        }
+        if (gamepad2.x){
+            arm.servosToHome();
+        }
 
-        telemetry.addData("leftServo: ", arm.leftServoPosition );
-        telemetry.addData("rightServo: ", arm.rightServoPosition);
-        telemetry.addData("arm power: ", armPower );
+        telemetry.addData("leftServo: ","%5.2f", arm.leftServoPosition );
+        telemetry.addData("rightServo: ", "%5.2f", arm.rightServoPosition);
+        telemetry.addData("arm power: ","%5.2f", armPower );
 
         telemetry.update();
 
