@@ -61,9 +61,8 @@ public class TeleOp2 extends OpMode
     private DcMotor rightBackDrive = null;
     private ArmController arm = null;
 
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
+    // Code to run ONCE when the driver hits INIT
+
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
