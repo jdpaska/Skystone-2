@@ -85,7 +85,7 @@ public class TeleOp2 extends OpMode
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         //rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
-       // arm = new ArmController();
+        arm = new ArmController(hardwareMap);
 
 
         // Tell the driver that initialization is complete.
@@ -132,11 +132,19 @@ public class TeleOp2 extends OpMode
         double strafe = gamepad1.left_stick_x;
         double armPower = gamepad2.left_stick_y;
 
-
+/*
         leftFrontPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
         rightFrontPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
         leftBackPower   = Range.clip(drive + turn - strafe, -1.0, 1.0) ;
         rightBackPower   = Range.clip(drive - turn + strafe, -1.0, 1.0) ;
+*/
+// see https://ftcforum.firstinspires.org/forum/ftc-technology/blocks-programming/52307-mecanum-drive-w-block-coding-help/page2
+        //
+        leftFrontPower   = Range.clip(drive + turn - strafe, -1.0, 1.0) ;
+        rightFrontPower   = Range.clip(drive - turn + strafe, -1.0, 1.0) ;
+        leftBackPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
+        rightBackPower   = Range.clip(drive - turn - strafe, -1.0, 1.0) ;
+
         //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
         leftFrontPower   = leftFrontPower * .4;
