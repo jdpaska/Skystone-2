@@ -32,7 +32,7 @@ public class ArmController {
     double  rightServoPosition = .5; // right servo start position
     double INCREMENT   = 0.01;
 
-    double  armPowerBias = .2;//slow the arm motor
+    double  armPowerBias = .4;//slow the arm motor
     //COUGARS: need to have a way to limit how far the arm will extend or contract.
 
     public ArmController (HardwareMap hardwareMap){
@@ -54,14 +54,17 @@ public class ArmController {
       ///armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
       //reset the motors encoder
+      /*
       armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      armMotor.setTargetPosition(100); //set the position
+      armMotor.setTargetPosition(1000); //set the position
 
       armMotor.setDirection(DcMotor.Direction.REVERSE);
       //set motor to run to a position and stop
       armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
       //motor will only move with power
+      */
+
       armMotor.setPower(armPower);
 
 //set motor power to zero

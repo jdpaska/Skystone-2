@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Red and opp Line!", group="chad")
+@Autonomous(name="right", group="chad")
 public class AutoRedChad extends LinearOpMode {
         //
         DcMotor frontleft;

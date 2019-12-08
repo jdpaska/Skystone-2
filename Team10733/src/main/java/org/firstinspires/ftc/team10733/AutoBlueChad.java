@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Blue and opp Line!", group="chad")
+@Autonomous(name="left", group="chad")
 public class AutoBlueChad extends LinearOpMode {
         //
         DcMotor frontleft;

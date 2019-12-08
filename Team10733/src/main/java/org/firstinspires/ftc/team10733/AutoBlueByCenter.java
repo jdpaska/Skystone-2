@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="To the Line by Center", group="chad")
+@Autonomous(name="Forward Left", group="chad")
 public class AutoBlueByCenter extends LinearOpMode {
         //
         DcMotor frontleft;
