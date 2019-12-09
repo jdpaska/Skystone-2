@@ -27,12 +27,18 @@ public class ArmController {
     double LEFT_HOME_POS     =  0.24;
     double RIGHT_HOME_POS     =  0.91;
 
+    public double getArmPower() {
+        return armPower;
+    }
+
+    double armPower;
+
 
     double  leftServoPosition = .5; // left servo start position
     double  rightServoPosition = .5; // right servo start position
     double INCREMENT   = 0.01;
 
-    double  armPowerBias = .4;//slow the arm motor
+    double  armPowerBias = .8;//slow the arm motor
     //COUGARS: need to have a way to limit how far the arm will extend or contract.
 
     public ArmController (HardwareMap hardwareMap){
@@ -47,7 +53,7 @@ public class ArmController {
     //extend the arm
 
 
-      double armPower;
+
       armPower = power * armPowerBias;
 
       //set motor direction

@@ -128,7 +128,7 @@ public class TeleOp2 extends OpMode
         // - This uses basic math to combine motions and is easier to drive straight.
         double drive = -gamepad1.left_stick_y;
         double turn  =  gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
+        double strafe = -gamepad1.left_stick_x;
         double armPower = gamepad2.left_stick_y;
 
 /*
@@ -164,9 +164,7 @@ public class TeleOp2 extends OpMode
 
         telemetry.addData("leftServo: ","%5.2f", arm.leftServoPosition );
         telemetry.addData("rightServo: ", "%5.2f", arm.rightServoPosition);
-        telemetry.addData("arm power: ","%5.2f", armPower );
 
-        telemetry.update();
 
         //read gamepad
         //open and close
@@ -199,8 +197,10 @@ public class TeleOp2 extends OpMode
          COUGARS: You can use telemetry to display data to the phone screen.  That's really helpful
          to see the motor power and other useful things.
         */
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        //telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "leftFront (%.2f), rightFront (%.2f), leftBack (%.2f), rightBack (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
+        telemetry.addData("actual arm power: ","%5.2f", arm.getArmPower() );
+
     }
 
     // Code to run ONCE after the driver hits STOP
