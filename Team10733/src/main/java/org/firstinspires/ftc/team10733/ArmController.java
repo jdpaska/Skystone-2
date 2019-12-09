@@ -86,6 +86,37 @@ public class ArmController {
     }
 
 
+    public void freeGrab(double servoDirection){
+        //freely grab and release
+        if (servoDirection > 0) {
+
+            if ((leftServoPosition < LEFT_MAX_POS) && (rightServoPosition > RIGHT_MIN_POS)) {
+                leftServoPosition += INCREMENT;
+                rightServoPosition -= INCREMENT;
+            }
+        }
+        else if (servoDirection < 0){
+            if ((leftServoPosition > LEFT_MIN_POS ) && (rightServoPosition < RIGHT_MAX_POS)) {
+                leftServoPosition -= INCREMENT ;
+                rightServoPosition += INCREMENT ;
+            }
+        }
+
+        /*telemetry.addData("Left Servo Position", "%5.2f", leftServoPosition);
+        telemetry.addData("Right Servo Position", "%5.2f", rightServoPosition);
+        telemetry.addData( "Arm Motor Power:" ,"%5.2f",armPower);
+        telemetry.addData(">", "Press Stop to end test." );
+        telemetry.update();*/
+
+        // Set the servo to the new position and pause;
+        leftServo.setPosition(leftServoPosition);
+        rightServo.setPosition(rightServoPosition);
+        //sleep(CYCLE_MS);
+        //idle();
+
+    }
+
+
     public void grab(){
     //grab the block by moving the two servos inward
 

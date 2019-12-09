@@ -130,6 +130,9 @@ public class TeleOp2 extends OpMode
         double turn  =  gamepad1.right_stick_x;
         double strafe = -gamepad1.left_stick_x;
         double armPower = gamepad2.left_stick_y;
+        double servoGrab = gamepad2.right_stick_y;
+
+        arm.freeGrab(servoGrab);
 
 /*
         leftFrontPower   = Range.clip(drive + turn + strafe, -1.0, 1.0) ;
