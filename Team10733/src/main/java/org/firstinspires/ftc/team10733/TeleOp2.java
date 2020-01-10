@@ -32,6 +32,7 @@ package org.firstinspires.ftc.team10733;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -60,6 +61,8 @@ public class TeleOp2 extends OpMode
     private DcMotor leftBackDrive = null;
     private DcMotor rightBackDrive = null;
     private ArmController arm = null;
+    private Servo rightTrayGrab = null;
+    //private Servo leftTrayGrab = null;
 
     // Code to run ONCE when the driver hits INIT
 
@@ -76,6 +79,8 @@ public class TeleOp2 extends OpMode
         rightFrontDrive = hardwareMap.get(DcMotor.class, "frontright");
         leftBackDrive = hardwareMap.get(DcMotor.class, "backleft");
         rightBackDrive = hardwareMap.get(DcMotor.class, "backright");
+        rightTrayGrab = hardwareMap.get(Servo.class, "rightGrab");
+        //leftTrayGrab = hardwareMap.get(Servo.class, "leftGrab");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -131,6 +136,8 @@ public class TeleOp2 extends OpMode
         double strafe = -gamepad1.left_stick_x;
         double armPower = gamepad2.left_stick_y;
         double servoGrab = gamepad2.right_stick_y;
+        double rightTrayGrab = gamepad2.right_bumper;
+        double leftTrayGrab = gamepad2.left_bumper;
 
         arm.freeGrab(servoGrab);
 
