@@ -13,6 +13,8 @@ public class ArmController {
     private Servo leftServo;
     private Servo  rightServo;
     private DcMotor armMotor = null;
+    private Servo leftTray;
+    private Servo rightTray;
     //private HardwareMap hardwareMap = null;
 
     //set min and max servo positions
@@ -26,6 +28,11 @@ public class ArmController {
     double RIGHT_CLOSED_POS     =  0.33;     // Minimum rotational position
     double LEFT_HOME_POS     =  0.24;
     double RIGHT_HOME_POS     =  0.91;
+    double LEFT_DOWN_POS     =  0.5; //good
+    double RIGHT_UP_POS     =  0.0;//
+    double RIGHT_DOWN_POS     =  -0.5;//good
+    double LEFT_UP_POS     =  0.9;//good
+
 
     public double getArmPower() {
         return armPower;
@@ -46,6 +53,9 @@ public class ArmController {
         leftServo = hardwareMap.get(Servo.class, "left_hand");
         rightServo = hardwareMap.get(Servo.class, "right_hand");
         armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
+        leftTray = hardwareMap.get(Servo.class, "left_tray");
+        rightTray = hardwareMap.get(Servo.class, "right_tray");
+
 
     }
 
@@ -162,7 +172,25 @@ public class ArmController {
             leftServoPosition = LEFT_HOME_POS;
             leftServo.setPosition(leftServoPosition);
 
+
+
         }
+
+
+    public void trayGrab(){
+
+        leftTray.setPosition(LEFT_DOWN_POS);
+        rightTray.setPosition(RIGHT_DOWN_POS);
+
+    }
+
+
+    public void trayRelease(){
+
+        leftTray.setPosition(LEFT_UP_POS);
+        rightTray.setPosition(RIGHT_UP_POS);
+
+    }
 
 
 
