@@ -26,7 +26,7 @@ public class ArmController {
     double LEFT_CLOSED_POS     =  0.67;     // Minimum rotational position
     double RIGHT_OPEN_POS     =  0.2;     // Maximum rotational position
     double RIGHT_CLOSED_POS     =  0.33;     // Minimum rotational position
-    double LEFT_HOME_POS     =  0.02;
+    double LEFT_HOME_POS     =  0.02 ;
     double RIGHT_HOME_POS     =  0.91;
     double LEFT_DOWN_POS     =  0.5; //good
     double RIGHT_UP_POS     =  0.8;//

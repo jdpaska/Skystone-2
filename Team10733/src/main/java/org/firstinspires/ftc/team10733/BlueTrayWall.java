@@ -35,6 +35,8 @@ public class  BlueTrayWall extends LinearOpMode {
         BNO055IMU imu;
         Orientation angles;
         Acceleration gravity;
+
+    private ArmController arm = null;
 //
 public void runOpMode(){
         //
@@ -48,12 +50,17 @@ public void runOpMode(){
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
         //
+    arm = new ArmController(hardwareMap);
+arm.trayRelease();
+
         waitForStartify();
         //
-        strafeToPosition(22.0, 0.2);
-        moveToPosition(-18.0,0.2);
-        //servos down
-        moveToPosition(17.0,0.2);
+        strafeToPosition(22.0, 0.4);
+        moveToPosition(-20.0,0.4);
+        arm.trayGrab();
+    moveToPosition(17.0,0.2);
+        arm.trayRelease();
+        //strafeToPosition(-30.0, 0.2);
         }
 //
     /*
