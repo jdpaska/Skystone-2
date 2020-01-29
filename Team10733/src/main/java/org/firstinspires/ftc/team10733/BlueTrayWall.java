@@ -55,12 +55,12 @@ arm.trayRelease();
 
         waitForStartify();
         //
-        strafeToPosition(22.0, 0.4);
+        strafeToPosition(25.0, 0.4);
         moveToPosition(-20.0,0.4);
         arm.trayGrab();
-    moveToPosition(17.0,0.2);
+    moveToPosition(20.0,0.2);
         arm.trayRelease();
-        //strafeToPosition(-30.0, 0.2);
+        strafeToPosition(-35.0, 0.4);
         }
 //
     /*

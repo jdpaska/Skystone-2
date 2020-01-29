@@ -168,6 +168,11 @@ public class ArmController {
             rightServo.setPosition(rightServoPosition);
             //need to wait for right server to finish so the two grabbers don't hit each other
             // add that code here
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             leftServoPosition = LEFT_HOME_POS;
             leftServo.setPosition(leftServoPosition);
