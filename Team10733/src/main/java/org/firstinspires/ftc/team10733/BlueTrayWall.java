@@ -55,7 +55,7 @@ arm.trayRelease();
 
         waitForStartify();
         //
-        strafeToPosition(25.0, 0.4);
+        strafeToPosition(25.0, 0.4); 
         moveToPosition(-20.0,0.4);
         arm.trayGrab();
     moveToPosition(20.0,0.2);
