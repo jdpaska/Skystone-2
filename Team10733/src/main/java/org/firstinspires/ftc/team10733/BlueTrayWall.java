@@ -55,12 +55,13 @@ arm.trayRelease();
 
         waitForStartify();
         //
-        strafeToPosition(25.0, 0.4); 
-        moveToPosition(-20.0,0.4);
+    moveToPosition(-16.0,0.4);
+        strafeToPosition(25.0, 0.4);
+        moveToPosition(-1, .2);
         arm.trayGrab();
-    moveToPosition(20.0,0.2);
+    moveToPosition(17.0,0.2);
         arm.trayRelease();
-        strafeToPosition(-35.0, 0.4);
+        strafeToPosition(-50.0, 0.4);
         }
 //
     /*
@@ -238,6 +239,7 @@ public void strafeToPosition(double inches, double speed){
         backright.setPower(speed);
         //
         while (frontleft.isBusy() && frontright.isBusy() && backleft.isBusy() && backright.isBusy()){}
+    telemetry.addData("motors busy", 0);
         frontright.setPower(0);
         frontleft.setPower(0);
         backright.setPower(0);
