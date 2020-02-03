@@ -153,10 +153,10 @@ public class TeleOp2 extends OpMode
 
         //leftPower   = Range.clip(drive + turn, -1.0, 1.0) ;
         //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-        leftFrontPower   = leftFrontPower * .4;
-        rightFrontPower   = rightFrontPower * .4;
-        leftBackPower   = leftBackPower * .4;
-        rightBackPower   = rightBackPower * .4;
+        leftFrontPower   = leftFrontPower * .5;
+        rightFrontPower   = rightFrontPower * .5;
+        leftBackPower   = leftBackPower * .5;
+        rightBackPower   = rightBackPower * .5;
 
         arm.extend(armPower);
         if (gamepad2.dpad_down){

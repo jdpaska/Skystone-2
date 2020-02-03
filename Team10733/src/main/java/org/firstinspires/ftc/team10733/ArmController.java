@@ -186,6 +186,15 @@ public class ArmController {
 
         leftTray.setPosition(LEFT_DOWN_POS);
         rightTray.setPosition(RIGHT_DOWN_POS);
+        while ((leftTray.getPosition() != LEFT_DOWN_POS) && (rightTray.getPosition() != RIGHT_DOWN_POS )){
+            //hwait
+            try{
+                sleep(500);
+            }
+            catch (InterruptedException e){
+
+            }
+        }
 
     }
 

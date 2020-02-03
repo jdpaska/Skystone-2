@@ -56,12 +56,13 @@ arm.trayRelease();
         waitForStartify();
         //
     moveToPosition(-16.0,0.4);
-        strafeToPosition(25.0, 0.4);
-        moveToPosition(-1, .2);
-        arm.trayGrab();
-    moveToPosition(17.0,0.2);
+    strafeToPosition(22.0, 0.4);
+    moveToPosition(-4.0,0.4);
+    arm.trayGrab();
+
+    moveToPosition(20.0,0.3);
         arm.trayRelease();
-        strafeToPosition(-50.0, 0.4);
+        strafeToPosition(-38.0, 0.4);
         }
 //
     /*
@@ -87,6 +88,7 @@ public void moveToPosition(double inches, double speed){
         frontright.setPower(speed);
         backright.setPower(speed);
         //
+
         while (frontleft.isBusy() && frontright.isBusy() && backleft.isBusy() && backright.isBusy()){
         if (exit){
         frontright.setPower(0);
@@ -95,7 +97,10 @@ public void moveToPosition(double inches, double speed){
         backleft.setPower(0);
         return;
         }
+
+
         }
+
         frontright.setPower(0);
         frontleft.setPower(0);
         backright.setPower(0);
