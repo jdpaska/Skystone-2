@@ -55,9 +55,14 @@ arm.trayRelease();
 
         waitForStartify();
         //
+        //try resetting the encoders here
+        
+        
     moveToPosition(-16.0,0.4);
     strafeToPosition(22.0, 0.4);
-    moveToPosition(-4.0,0.4);
+    //try turn with gyro 0 degrees to see if that straightens the robot
+   
+        moveToPosition(-4.0,0.4);
     arm.trayGrab();
 
     moveToPosition(20.0,0.3);
